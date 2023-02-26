@@ -39,13 +39,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Binary1",
+						"referenceName": "ds_zip_file_landing",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "Binary2",
+						"referenceName": "ds_unzip_file_sampledata",
 						"type": "DatasetReference"
 					}
 				]

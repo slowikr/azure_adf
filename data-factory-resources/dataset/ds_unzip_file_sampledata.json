@@ -1,5 +1,5 @@
 {
-	"name": "Binary2",
+	"name": "ds_unzip_file_sampledata",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_blob_oreillyadfetl",

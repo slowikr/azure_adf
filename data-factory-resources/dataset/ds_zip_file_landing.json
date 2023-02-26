@@ -1,5 +1,5 @@
 {
-	"name": "Binary1",
+	"name": "ds_zip_file_landing",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_blob_oreillyadfetl",
