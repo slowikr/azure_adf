@@ -292,7 +292,7 @@
 				"typeProperties": {
 					"variableName": "RunSeqNo",
 					"value": {
-						"value": "@activity('Lookup RunSeqNo').output.firstRow.RunSeqNo",
+						"value": "@string(activity('Lookup RunSeqNo').output.firstRow.RunSeqNo)",
 						"type": "Expression"
 					}
 				}
@@ -301,7 +301,7 @@
 		"variables": {
 			"RunSeqNo": {
 				"type": "String",
-				"defaultValue": "-1"
+				"defaultValue": "\"-1\""
 			}
 		},
 		"folder": {
