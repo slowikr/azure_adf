@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "copy zip file to sample data",
+				"name": "copy zip file to sample data change",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
