@@ -1,0 +1,9 @@
+{
+	"name": "pl_copy_sweettreats_sales_to_sql",
+	"properties": {
+		"folder": {
+			"name": "Chapter3"
+		},
+		"annotations": []
+	}
+}
