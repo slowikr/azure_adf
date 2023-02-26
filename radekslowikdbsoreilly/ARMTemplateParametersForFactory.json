@@ -8,6 +8,9 @@
 		"ls_blob_oreillyadfetl_accountKey": {
 			"value": ""
 		},
+		"ls_azuresql_sales_connectionString": {
+			"value": ""
+		},
 		"ls_blob_oreillyadfetl_properties_typeProperties_url": {
 			"value": "https://oreillyadfetl.dfs.core.windows.net/"
 		}

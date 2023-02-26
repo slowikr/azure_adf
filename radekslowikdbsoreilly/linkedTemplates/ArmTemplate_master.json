@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_blob_oreillyadfetl'"
 		},
+		"ls_azuresql_sales_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_azuresql_sales'"
+		},
 		"ls_blob_oreillyadfetl_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://oreillyadfetl.dfs.core.windows.net/"
@@ -44,6 +48,9 @@
 					},
 					"ls_blob_oreillyadfetl_accountKey": {
 						"value": "[parameters('ls_blob_oreillyadfetl_accountKey')]"
+					},
+					"ls_azuresql_sales_connectionString": {
+						"value": "[parameters('ls_azuresql_sales_connectionString')]"
 					},
 					"ls_blob_oreillyadfetl_properties_typeProperties_url": {
 						"value": "[parameters('ls_blob_oreillyadfetl_properties_typeProperties_url')]"
