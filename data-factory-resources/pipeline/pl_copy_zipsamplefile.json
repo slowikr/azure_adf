@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "copy zip file to sample data change",
+				"name": "Import sales data",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {

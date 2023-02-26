@@ -1,5 +1,5 @@
 {
-	"name": "ds_sql_sales_load",
+	"name": "ds_ASQL_dboSalesLoad",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_azuresql_sales",

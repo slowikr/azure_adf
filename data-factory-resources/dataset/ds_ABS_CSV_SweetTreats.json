@@ -1,5 +1,5 @@
 {
-	"name": "ds_sweettreats_apr20_csv",
+	"name": "ds_ABS_CSV_SweetTreats",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_blob_oreillyadfetl",
