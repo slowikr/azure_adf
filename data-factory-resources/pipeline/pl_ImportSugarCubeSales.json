@@ -20,6 +20,8 @@
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
+							"wildcardFolderPath": "azure-data-factory-by-example-main.zip/azure-data-factory-by-example-main/SampleData/SugarCube",
+							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -39,6 +41,42 @@
 						"mappings": [
 							{
 								"source": {
+									"path": "['Product']"
+								},
+								"sink": {
+									"name": "Product",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ManufacturerProductCode']"
+								},
+								"sink": {
+									"name": "ManufacturerProductCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Units']"
+								},
+								"sink": {
+									"name": "UnitsSold",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['Value']"
+								},
+								"sink": {
+									"name": "SalesValueUSD",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
 									"path": "$['Month']"
 								},
 								"sink": {
@@ -53,42 +91,6 @@
 								"sink": {
 									"name": "Retailer",
 									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['Sales'][0]['Product']"
-								},
-								"sink": {
-									"name": "Product",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['Sales'][0]['ManufacturerProductCode']"
-								},
-								"sink": {
-									"name": "ManufacturerProductCode",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['Sales'][0]['Units']"
-								},
-								"sink": {
-									"name": "UnitsSold",
-									"type": "Int32"
-								}
-							},
-							{
-								"source": {
-									"path": "$['Sales'][0]['Value']"
-								},
-								"sink": {
-									"name": "SalesValueUSD",
-									"type": "Decimal"
 								}
 							}
 						],
