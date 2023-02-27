@@ -24,12 +24,7 @@
 				"fileName": {
 					"value": "@dataset().File",
 					"type": "Expression"
-				},
-				"folderPath": {
-					"value": "@dataset().Directory",
-					"type": "Expression"
-				},
-				"fileSystem": "output"
+				}
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
