@@ -1,9 +1,9 @@
 {
-	"name": "pl_ImportJson_parametrized",
+	"name": "pl_ImportJson_parametrized_sugarcube",
 	"properties": {
 		"activities": [
 			{
-				"name": "copy json parametrized to SQL",
+				"name": "copy json parametrized sugarcube to SQL",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
