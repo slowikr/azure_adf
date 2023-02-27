@@ -393,6 +393,153 @@
 					"referenceName": "ls_azuresql_sales",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "If Rows Skipped",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Import sales data",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@greater(activity('Import sales data').output.rowsSkipped,0)",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.00:05:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"wildcardFolderPath": {
+											"value": "@join(skip(split(activity('Import sales data').output.logFilePath, '/'),1 ), '/')",
+											"type": "Expression"
+										},
+										"wildcardFileName": "*.txt",
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "Timestamp",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Timestamp",
+												"type": "DateTime",
+												"physicalType": "datetime2"
+											}
+										},
+										{
+											"source": {
+												"name": "Level",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Level",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "OperationName",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "OperationName",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "OperationItem",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "OperationItem",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Message",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Message",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										}
+									],
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_logerror_file",
+									"type": "DatasetReference",
+									"parameters": {
+										"Directory": {
+											"value": "@activity('Import sales data').output.logFilePath",
+											"type": "Expression"
+										},
+										"File": "\"*.txt\""
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_logtable_write",
+									"type": "DatasetReference"
+								}
+							]
+						}
+					]
+				}
 			}
 		],
 		"parameters": {
