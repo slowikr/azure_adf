@@ -40,14 +40,6 @@
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
-							"wildcardFolderPath": {
-								"value": "@pipeline().parameters.path",
-								"type": "Expression"
-							},
-							"wildcardFileName": {
-								"value": "@pipeline().parameters.file",
-								"type": "Expression"
-							},
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -159,8 +151,21 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_ABS_CSV_SweetTreats",
-						"type": "DatasetReference"
+						"referenceName": "ds_csv_parametrized_kvault",
+						"type": "DatasetReference",
+						"parameters": {
+							"Container": "sampledata",
+							"Directory": {
+								"value": "@pipeline().parameters.Directory",
+								"type": "Expression"
+							},
+							"File": {
+								"value": "@pipeline().parameters.File",
+								"type": "Expression"
+							},
+							"secretname": "storageaccountkey",
+							"url": "https://oreillyadfetl.dfs.core.windows.net"
+						}
 					}
 				],
 				"outputs": [
@@ -258,7 +263,7 @@
 							"Comments": {
 								"type": "String",
 								"value": {
-									"value": "@concat('Pipeline ',pipeline().Pipeline, ' executed in ',pipeline().DataFactory)",
+									"value": "@concat('Pipeline ',pipeline().Pipeline, ' executed in ',pipeline().DataFactory, ' - loading file', pipeline().parameters.Directory,'/',pipeline().parameters.File)",
 									"type": "Expression"
 								}
 							},
@@ -308,10 +313,10 @@
 			}
 		],
 		"parameters": {
-			"path": {
+			"Directory": {
 				"type": "string"
 			},
-			"file": {
+			"File": {
 				"type": "string",
 				"defaultValue": "\"*.csv\""
 			}
