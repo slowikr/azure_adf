@@ -1,0 +1,119 @@
+{
+	"name": "pl_IngestHandyCandyMessages_parametrized",
+	"properties": {
+		"activities": [
+			{
+				"name": "copy json into parquet",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"wildcardFolderPath": "azure-data-factory-by-example-main.zip/azure-data-factory-by-example-main/SampleData/HandyCandy",
+							"wildcardFileName": "*.json",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "MergeFiles"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"parallelCopies": 3,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['Product']"
+								},
+								"sink": {
+									"name": "Product",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Price']"
+								},
+								"sink": {
+									"name": "Price",
+									"type": "Single"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TransactionId']"
+								},
+								"sink": {
+									"name": "TransactionId",
+									"type": "Guid"
+								}
+							},
+							{
+								"source": {
+									"path": "$['TransactionDate']"
+								},
+								"sink": {
+									"name": "TransactionDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['StoreId']"
+								},
+								"sink": {
+									"name": "StoreId",
+									"type": "Int16"
+								}
+							}
+						],
+						"collectionReference": "$['Items']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_abs_json_parametrized",
+						"type": "DatasetReference",
+						"parameters": {
+							"Container": "sampledata",
+							"Directory": "\".\"",
+							"File": "\".\""
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_ABS_PAR_HandyCandy",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Chapter5"
+		},
+		"annotations": []
+	}
+}
