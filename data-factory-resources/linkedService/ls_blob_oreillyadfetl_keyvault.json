@@ -1,17 +1,30 @@
 {
 	"name": "ls_blob_oreillyadfetl_keyvault",
 	"properties": {
+		"parameters": {
+			"secretname": {
+				"type": "string",
+				"defaultValue": "\".\""
+			},
+			"url_path": {
+				"type": "string",
+				"defaultValue": "https://"
+			}
+		},
 		"annotations": [],
 		"type": "AzureBlobFS",
 		"typeProperties": {
-			"url": "https://oreillyadfetl.dfs.core.windows.net",
+			"url": "@{linkedService().url_path}",
 			"accountKey": {
 				"type": "AzureKeyVaultSecret",
 				"store": {
 					"referenceName": "ls_radekslowik_keyvault",
 					"type": "LinkedServiceReference"
 				},
-				"secretName": "storageaccountkey"
+				"secretName": {
+					"value": "@linkedService().secretname",
+					"type": "Expression"
+				}
 			}
 		}
 	}
