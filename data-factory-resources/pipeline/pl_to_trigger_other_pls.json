@@ -1,0 +1,28 @@
+{
+	"name": "pl_to_trigger_other_pls",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_ImportSweetTreatsSales_Audit_withparams",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"path": "azure-data-factory-by-example-main.zip/azure-data-factory-by-example-main/SampleData/SweetTreats",
+						"file": "*.csv"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Chapter5"
+		},
+		"annotations": []
+	}
+}
