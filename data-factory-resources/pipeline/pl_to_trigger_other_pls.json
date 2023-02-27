@@ -18,6 +18,30 @@
 						"file": "*.csv"
 					}
 				}
+			},
+			{
+				"name": "Execute Pipeline1_copy1",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Execute Pipeline1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_ImportSweetTreatsSales_Audit_withparams",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"path": "azure-data-factory-by-example-main.zip/azure-data-factory-by-example-main/SampleData/Desserts4All",
+						"file": "*.csv"
+					}
+				}
 			}
 		],
 		"folder": {
