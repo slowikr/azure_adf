@@ -1,0 +1,10 @@
+{
+	"name": "ls_radekslowik_keyvault",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://radekslowik-keyvault.vault.azure.net/"
+		}
+	}
+}
