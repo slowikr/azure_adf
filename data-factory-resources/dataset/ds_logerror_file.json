@@ -21,16 +21,36 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().File",
-					"type": "Expression"
-				}
+				"fileName": "61852e02-d70a-22df-edb1-f7b72fcdc5a3_0.txt",
+				"folderPath": "errors/copyactivity-logs/Import sales data/ef4c5434-1761-4488-ae6d-3c1c80586044",
+				"fileSystem": "output"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "Timestamp",
+				"type": "String"
+			},
+			{
+				"name": "Level",
+				"type": "String"
+			},
+			{
+				"name": "OperationName",
+				"type": "String"
+			},
+			{
+				"name": "OperationItem",
+				"type": "String"
+			},
+			{
+				"name": "Message",
+				"type": "String"
+			}
+		]
 	}
 }
