@@ -1,0 +1,22 @@
+{
+	"name": "ds_file_setting_lookup_landing",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_blob_oreillyadfetl",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Chapter5"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "files_mapping.json",
+				"fileSystem": "landing"
+			}
+		},
+		"schema": {}
+	}
+}

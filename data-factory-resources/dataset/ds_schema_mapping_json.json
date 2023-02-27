@@ -1,0 +1,59 @@
+{
+	"name": "ds_schema_mapping_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_blob_oreillyadfetl",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Chapter5"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "schema_mapping.json",
+				"fileSystem": "landing"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"type": {
+					"type": "string"
+				},
+				"mappings": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"source": {
+								"type": "object",
+								"properties": {
+									"path": {
+										"type": "string"
+									}
+								}
+							},
+							"sink": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string"
+									},
+									"type": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				},
+				"collectionReference": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
