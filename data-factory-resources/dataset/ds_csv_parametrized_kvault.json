@@ -5,8 +5,14 @@
 			"referenceName": "ls_blob_oreillyadfetl_keyvault",
 			"type": "LinkedServiceReference",
 			"parameters": {
-				"secretname": "\".\"",
-				"url_path": "https://"
+				"secretname": {
+					"value": "@dataset().secretname",
+					"type": "Expression"
+				},
+				"url_path": {
+					"value": "@dataset().url",
+					"type": "Expression"
+				}
 			}
 		},
 		"parameters": {
@@ -17,6 +23,12 @@
 				"type": "string"
 			},
 			"File": {
+				"type": "string"
+			},
+			"secretname": {
+				"type": "string"
+			},
+			"url": {
 				"type": "string"
 			}
 		},
