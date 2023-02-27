@@ -97,7 +97,7 @@
 								},
 								"enableStaging": false,
 								"translator": {
-									"value": "@activity('Lookup1').output.firstRow",
+									"value": "@activity('Lookup1').output.firstRow.translator",
 									"type": "Expression"
 								}
 							},
