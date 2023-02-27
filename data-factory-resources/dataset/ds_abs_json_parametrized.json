@@ -3,7 +3,11 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_blob_oreillyadfetl_keyvault",
-			"type": "LinkedServiceReference"
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"secretname": "\".\"",
+				"url_path": "https://"
+			}
 		},
 		"parameters": {
 			"Container": {
