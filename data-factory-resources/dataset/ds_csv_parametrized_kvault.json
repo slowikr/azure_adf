@@ -47,6 +47,10 @@
 				"folderPath": {
 					"value": "@dataset().Directory",
 					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().Directory",
+					"type": "Expression"
 				}
 			},
 			"columnDelimiter": ",",
