@@ -10,10 +10,12 @@
 				"type": "string"
 			},
 			"Directory": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "\".\""
 			},
 			"File": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "\".\""
 			}
 		},
 		"folder": {
