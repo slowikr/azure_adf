@@ -1,0 +1,46 @@
+{
+	"name": "ds_xlsx_jollygood",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_blob_oreillyadfetl",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Chapter7"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "SALES",
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Sales Apr-Sep 2020.xlsx",
+				"folderPath": "azure-data-factory-by-example-main.zip/azure-data-factory-by-example-main/SampleData/JollyGood",
+				"fileSystem": "sampledata"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Period",
+				"type": "String"
+			},
+			{
+				"name": "Product",
+				"type": "String"
+			},
+			{
+				"name": "Unit Price",
+				"type": "String"
+			},
+			{
+				"name": "Currency",
+				"type": "String"
+			},
+			{
+				"name": "Units Sold",
+				"type": "String"
+			}
+		]
+	}
+}
