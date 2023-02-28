@@ -1,0 +1,40 @@
+{
+	"name": "dboProduct",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azuresql_sales",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Chapter7"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Product",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ProductName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WeightInOunces",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 2
+			},
+			{
+				"name": "WeightInGrams",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 2
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Product"
+		}
+	}
+}
