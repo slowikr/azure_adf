@@ -1,0 +1,12 @@
+{
+	"name": "externalsharedir",
+	"properties": {
+		"type": "SelfHosted",
+		"typeProperties": {
+			"linkedInfo": {
+				"resourceId": "/subscriptions/7a9c6adb-5f52-4098-ad7c-dd47342b4091/resourcegroups/Python_Test/providers/Microsoft.DataFactory/factories/radekslowikdbssharedadf/integrationruntimes/selfhostedir",
+				"authorizationType": "Rbac"
+			}
+		}
+	}
+}
