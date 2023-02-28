@@ -13,12 +13,25 @@
 						"type": "DatasetReference"
 					},
 					"name": "JollyGoodSales"
+				},
+				{
+					"linkedService": {
+						"referenceName": "ls_blob_oreillyadfetl",
+						"type": "LinkedServiceReference"
+					},
+					"name": "ExchangeRates"
 				}
 			],
 			"sinks": [],
 			"transformations": [
 				{
 					"name": "removetotalmonth"
+				},
+				{
+					"name": "onlyUSD"
+				},
+				{
+					"name": "lookup1"
 				}
 			],
 			"scriptLines": [
@@ -32,7 +45,28 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> JollyGoodSales",
-				"JollyGoodSales filter(Product!=\"Month Total\") ~> removetotalmonth"
+				"source(output(",
+				"          FromCurrency as string,",
+				"          ToCurrency as string,",
+				"          Date as date,",
+				"          ExchangeRate as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'excel',",
+				"     fileSystem: 'sampledata',",
+				"     folderPath: 'azure-data-factory-by-example-main.zip/azure-data-factory-by-example-main/SampleData',",
+				"     fileName: 'ExchangeRates.xlsx',",
+				"     sheetName: 'Sheet1',",
+				"     firstRowAsHeader: true) ~> ExchangeRates",
+				"JollyGoodSales filter(Product!=\"Month Total\") ~> removetotalmonth",
+				"ExchangeRates filter(ToCurrency=='USD') ~> onlyUSD",
+				"removetotalmonth, onlyUSD lookup(Period == Date",
+				"     && Currency == FromCurrency,",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> lookup1"
 			]
 		}
 	}
