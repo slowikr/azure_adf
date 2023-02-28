@@ -1,0 +1,42 @@
+{
+	"name": "Parquet1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_blob_oreillyadfetl",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "HandyCandy.parquet",
+				"folderPath": "datalake",
+				"fileSystem": "output"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "Product",
+				"type": "UTF8"
+			},
+			{
+				"name": "Price",
+				"type": "FLOAT"
+			},
+			{
+				"name": "TransactionId",
+				"type": "UTF8"
+			},
+			{
+				"name": "TransactionDate",
+				"type": "INT96"
+			},
+			{
+				"name": "StoreId",
+				"type": "INT32"
+			}
+		]
+	}
+}
