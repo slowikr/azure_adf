@@ -110,24 +110,14 @@
 					"storedProcedureName": "[dbo].[LogPipelineEnd]",
 					"storedProcedureParameters": {
 						"FilesRead": {
-							"value": {
-								"value": "@activity('Import sales data').output.filesRead",
-								"type": "Expression"
-							},
 							"type": "Int32"
 						},
 						"RowsCopied": {
-							"value": {
-								"value": "@activity('Import sales data').output.rowsCopied",
-								"type": "Expression"
-							},
+							"value": null,
 							"type": "Int32"
 						},
 						"RowsRead": {
-							"value": {
-								"value": "@activity('Import sales data').output.rowsRead",
-								"type": "Expression"
-							},
+							"value": null,
 							"type": "Int32"
 						},
 						"RunEndDateTime": {
@@ -178,24 +168,15 @@
 					"storedProcedureName": "[dbo].[LogPipelineEnd]",
 					"storedProcedureParameters": {
 						"FilesRead": {
-							"value": {
-								"value": "@activity('Import sales data').output.filesRead",
-								"type": "Expression"
-							},
+							"value": null,
 							"type": "Int32"
 						},
 						"RowsCopied": {
-							"value": {
-								"value": "@activity('Import sales data').output.rowsCopied",
-								"type": "Expression"
-							},
+							"value": null,
 							"type": "Int32"
 						},
 						"RowsRead": {
-							"value": {
-								"value": "@activity('Import sales data').output.rowsRead",
-								"type": "Expression"
-							},
+							"value": null,
 							"type": "Int32"
 						},
 						"RunEndDateTime": {
@@ -207,7 +188,7 @@
 						},
 						"RunSeqNo": {
 							"value": {
-								"value": "@variables('RunSeqNo')",
+								"value": "@int(activity('LookupRunSeqNo').output.firstRow.RunSeqNo)",
 								"type": "Expression"
 							},
 							"type": "Int32"
