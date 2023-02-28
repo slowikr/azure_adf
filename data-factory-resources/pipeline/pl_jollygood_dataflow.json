@@ -1,0 +1,93 @@
+{
+	"name": "pl_jollygood_dataflow",
+	"properties": {
+		"activities": [
+			{
+				"name": "jollygoodDataflow",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "LookupRunSeqNo",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.00:10:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "df_TransformJollyGoodSales",
+						"type": "DataFlowReference",
+						"parameters": {
+							"RunSeqNo": "1"
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "LookupRunSeqNo",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.00:05:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderStoredProcedureName": "[dbo].[LogPipelineStart]",
+						"storedProcedureParameters": {
+							"Comments": {
+								"type": "String",
+								"value": {
+									"value": "@concat('Pipeline ',pipeline().Pipeline, ' executed in ',pipeline().DataFactory, ' - loading file')",
+									"type": "Expression"
+								}
+							},
+							"PipelineRunId": {
+								"type": "Guid",
+								"value": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
+							},
+							"RunStartDateTime": {
+								"type": "DateTime",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							}
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_ASQL_dboSalesLoad",
+						"type": "DatasetReference"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Chapter7"
+		},
+		"annotations": []
+	}
+}
