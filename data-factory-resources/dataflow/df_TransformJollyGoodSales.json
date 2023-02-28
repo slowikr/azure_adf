@@ -22,7 +22,15 @@
 					"name": "ExchangeRates"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_ASQL_dboSalesLoad",
+						"type": "DatasetReference"
+					},
+					"name": "writetoSQL"
+				}
+			],
 			"transformations": [
 				{
 					"name": "removetotalmonth"
@@ -37,7 +45,7 @@
 					"name": "totalSalesUSD"
 				},
 				{
-					"name": "select1"
+					"name": "finalColumns"
 				}
 			],
 			"scriptLines": [
@@ -88,7 +96,35 @@
 				"          RunSeqNo",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1"
+				"     skipDuplicateMapOutputs: true) ~> finalColumns",
+				"finalColumns sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          RowID as integer,",
+				"          Retailer as string,",
+				"          SalesMonth as date,",
+				"          Product as string,",
+				"          ManufacturerProductCode as string,",
+				"          SalesValueUSD as decimal(18,2),",
+				"          UnitsSold as integer,",
+				"          SourceFileName as string,",
+				"          RunSeqNo as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          Retailer,",
+				"          SalesMonth,",
+				"          Product,",
+				"          SalesValueUSD,",
+				"          UnitsSold",
+				"     )) ~> writetoSQL"
 			]
 		}
 	}
