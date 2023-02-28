@@ -32,9 +32,18 @@
 				},
 				{
 					"name": "lookup1"
+				},
+				{
+					"name": "totalSalesUSD"
+				},
+				{
+					"name": "select1"
 				}
 			],
 			"scriptLines": [
+				"parameters{",
+				"     RunSeqNo as integer (1)",
+				"}",
 				"source(output(",
 				"          Period as date 'yyyy-MM-dd',",
 				"          Product as string,",
@@ -66,7 +75,20 @@
 				"     && Currency == FromCurrency,",
 				"     multiple: false,",
 				"     pickup: 'any',",
-				"     broadcast: 'auto')~> lookup1"
+				"     broadcast: 'auto')~> lookup1",
+				"lookup1 derive(SalesValueUSD = {Unit Price}*{Units Sold}*ExchangeRate,",
+				"          Retailer = 'Jolly Good Ltd',",
+				"          RunSeqNo = $RunSeqNo) ~> totalSalesUSD",
+				"totalSalesUSD select(mapColumn(",
+				"          SalesMonth = Period,",
+				"          Product,",
+				"          UnitsSold = {Units Sold},",
+				"          SalesValueUSD,",
+				"          Retailer,",
+				"          RunSeqNo",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1"
 			]
 		}
 	}
