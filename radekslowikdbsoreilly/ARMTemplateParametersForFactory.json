@@ -5,14 +5,20 @@
 		"factoryName": {
 			"value": "radekslowikdbsoreilly"
 		},
-		"ls_blob_oreillyadfetl_accountKey": {
+		"ls_azuresql_sales_connectionString": {
 			"value": ""
 		},
-		"ls_azuresql_sales_connectionString": {
+		"ls_blob_oreillyadfetl_accountKey": {
 			"value": ""
 		},
 		"ls_blob_oreillyadfetl_properties_typeProperties_url": {
 			"value": "https://oreillyadfetl.dfs.core.windows.net/"
+		},
+		"ls_blob_oreillyadfetl_keyvault_properties_typeProperties_url": {
+			"value": "@{linkedService().url_path}"
+		},
+		"ls_radekslowik_keyvault_properties_typeProperties_baseUrl": {
+			"value": "https://radekslowik-keyvault.vault.azure.net/"
 		}
 	}
 }
